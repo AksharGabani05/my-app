@@ -17,6 +17,7 @@ function Sidebar() {
         <h3>Admin Panel</h3>
       </div>
       <nav className="sidebar-nav">
+        <Link to="/admin/profile">Profile</Link>
         <Link to="/admin/silver-products">Silver Products</Link>
         <Link to="/admin/gold-products">Gold Products</Link>
         <Link to="/admin/appointments">Appointments</Link>

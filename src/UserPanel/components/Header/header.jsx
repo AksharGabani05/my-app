@@ -6,6 +6,7 @@ import {
   Form,
   Button,
   NavDropdown,
+  Offcanvas,
 } from "react-bootstrap";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./header.css";
@@ -13,6 +14,7 @@ import "./header.css";
 const Header = () => {
   const [showProfileOptions, setShowProfileOptions] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(false);
 
   useEffect(() => {
     // Check if user is logged in (you can modify this based on your auth implementation)
@@ -30,18 +32,93 @@ const Header = () => {
     setShowProfileOptions(!showProfileOptions);
   };
 
+  const handleCloseSidebar = () => setShowSidebar(false);
+  const handleShowSidebar = () => setShowSidebar(true);
+
   return (
     <Navbar expand="lg" className="custom-navbar py-3 shadow-sm">
       <Container>
         {/* Logo */}
         <Navbar.Brand href="/" className="navbar-logo">
-          LOGO
+          JEWELS
         </Navbar.Brand>
 
-        {/* Toggler */}
-        <Navbar.Toggle aria-controls="navbar-nav" />
+        {/* Mobile Toggle Button */}
+        <div className="d-flex align-items-center mobile-icons">
+          <Button variant="link" className="icon-button me-2 d-lg-none" aria-label="Search">
+            <i className="bi bi-search iconbutton"></i>
+          </Button>
+          {isLoggedIn && (
+            <Button variant="link" className="icon-button me-2 d-lg-none" aria-label="Cart">
+              <i className="bi bi-bag-check iconbutton"></i>
+            </Button>
+          )}
+          <Navbar.Toggle 
+            aria-controls="navbar-nav" 
+            onClick={handleShowSidebar}
+            className="custom-toggler"
+          />
+        </div>
 
-        <Navbar.Collapse id="navbar-nav">
+        {/* Sidebar for Mobile/Tablet */}
+        <Offcanvas show={showSidebar} onHide={handleCloseSidebar} placement="end" className="custom-sidebar">
+          <Offcanvas.Header closeButton>
+            <Offcanvas.Title>Menu</Offcanvas.Title>
+          </Offcanvas.Header>
+          <Offcanvas.Body>
+            <Nav className="flex-column mobile-nav">
+              <Nav.Link href="/home" className="nav-link-custom">
+                Home
+              </Nav.Link>
+              <div className="mobile-dropdown">
+                <div className="mobile-dropdown-header">
+                  Shop
+                  <i className="bi bi-chevron-down"></i>
+                </div>
+                <div className="mobile-dropdown-content">
+                  <Nav.Link href="/shop/gold" className="dropdown-item-custom">Gold</Nav.Link>
+                  <Nav.Link href="/shop/silver" className="dropdown-item-custom">Silver</Nav.Link>
+                  <Nav.Link href="/shop/bronze" className="dropdown-item-custom">Bronze</Nav.Link>
+                  <Nav.Link href="/shop/diamond" className="dropdown-item-custom">Diamond</Nav.Link>
+                </div>
+              </div>
+              <Nav.Link href="/blog" className="nav-link-custom">
+                Blog
+              </Nav.Link>
+              <NavDropdown
+                title={
+                  <span>
+                    Pages <i className="bi bi-chevron-down"></i>
+                  </span>
+                }
+                id="pages-dropdown"
+                className="nav-link-custom nav-dropdown-custom"
+              >
+                <NavDropdown.Item href="/about" className="dropdown-item-custom">
+                  About
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/faq" className="dropdown-item-custom">
+                  FAQ
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/refund-policy" className="dropdown-item-custom">
+                  Refund Policy
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/privacy-policy" className="dropdown-item-custom">
+                  Privacy Policy
+                </NavDropdown.Item>
+                <NavDropdown.Item href="/book-appointment" className="dropdown-item-custom">
+                  Appointment Booking
+                </NavDropdown.Item>
+              </NavDropdown>
+              <Nav.Link href="/contact" className="nav-link-custom">
+                Contact
+              </Nav.Link>
+            </Nav>
+          </Offcanvas.Body>
+        </Offcanvas>
+
+        {/* Desktop Navigation */}
+        <Navbar.Collapse id="navbar-nav" className="desktop-nav">
           {/* Navigation Links */}
           <Nav className="me-auto">
             <Nav.Link href="/home" className="nav-link-custom">

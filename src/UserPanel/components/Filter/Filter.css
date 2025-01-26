@@ -1,0 +1,59 @@
+.filter-sidebar {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.filter-section {
+  margin-bottom: 25px;
+}
+
+.filter-section h4 {
+  font-size: 18px;
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: 600;
+}
+
+.filter-section .form-check {
+  margin-bottom: 10px;
+}
+
+.filter-section .form-check-label {
+  color: #666;
+  font-size: 14px;
+}
+
+.price-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: #666;
+  font-size: 14px;
+}
+
+.form-range {
+  accent-color: goldenrod;
+}
+
+.form-select {
+  border-color: #ddd;
+  font-size: 14px;
+}
+
+.form-select:focus {
+  border-color: goldenrod;
+  box-shadow: 0 0 0 0.2rem rgba(218, 165, 32, 0.25);
+}
+
+.form-check-input:checked {
+  background-color: goldenrod;
+  border-color: goldenrod;
+}
+
+@media (max-width: 768px) {
+  .filter-sidebar {
+    margin-bottom: 20px;
+  }
+}

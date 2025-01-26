@@ -9,6 +9,8 @@ import Register from './Pages/Register';
 import AppointmentBooking from './Pages/Appoiment-booking';
 import Faq from './Pages/Faq';
 import Blog from './Pages/Blog';
+import Gold from './Pages/Gold';
+import SingleProduct from './Pages/SingleProduct';
 
 const UserRoutes = () => {
   return (
@@ -21,6 +23,8 @@ const UserRoutes = () => {
       <Route path="/book-appointment" element={<AppointmentBooking />} />
       <Route path="/faq" element={<Faq/>}/>
       <Route path="/blog" element={<Blog/>}/>
+      <Route path="/shop/gold" element={<Gold />} />
+      <Route path="/shop/product/:id" element={<SingleProduct />} />
     </Routes>
   );
 };
