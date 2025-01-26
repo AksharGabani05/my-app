@@ -19,6 +19,7 @@ function Sidebar() {
       <nav className="sidebar-nav">
         <Link to="/admin/silver-products">Silver Products</Link>
         <Link to="/admin/gold-products">Gold Products</Link>
+        <Link to="/admin/appointments">Appointments</Link>
         <button onClick={handleLogout}>Logout</button>
       </nav>
     </div>

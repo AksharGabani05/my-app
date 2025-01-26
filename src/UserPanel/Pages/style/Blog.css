@@ -1,0 +1,208 @@
+.blog-page {
+    min-height: 100vh;
+  }
+  
+  .blog-hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+                url('https://soliloquywp.com/wp-content/uploads/2018/11/nb_ist_cover.jpg') center/cover no-repeat;
+    padding: 100px 0;
+    text-align: center;
+    color: white;
+    margin-bottom: 50px;
+  }
+  
+  .blog-hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  
+  .blog-hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+  }
+  
+  .blog-content {
+    padding: 40px 0;
+  }
+  
+  .blog-card {
+    transition: transform 0.2s ease;
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .blog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .blog-image-wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .blog-image {
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .blog-card:hover .blog-image {
+    transform: scale(1.05);
+  }
+  
+  .blog-category {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #fff;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .blog-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+    color: #666;
+  }
+  
+  .blog-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #333;
+  }
+  
+  .blog-excerpt {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+  
+  .blog-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .author-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+  }
+  
+  .author-name {
+    font-size: 0.9rem;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .blog-hero {
+      padding: 60px 0;
+    }
+  
+    .blog-hero h1 {
+      font-size: 2.5rem;
+    }
+  
+    .blog-hero p {
+      font-size: 1rem;
+    }
+  
+    .blog-content {
+      padding: 20px 0;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .blog-hero h1 {
+      font-size: 2rem;
+    }
+  
+    .blog-card {
+      margin-bottom: 20px;
+    }
+  }
+  
+  /* Detail View Styles */
+  .blog-detail-section {
+    padding: 2rem 0;
+  }
+  
+  .back-button {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+    cursor: pointer;
+  }
+  
+  .back-button:hover {
+    color: #333;
+  }
+  
+  .blog-detail {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .detail-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .detail-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    color: #666;
+  }
+  
+  .detail-category {
+    background: #f0f0f0;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+  }
+  
+  .detail-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .detail-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+    margin: 2rem 0;
+  }
+  
+  .detail-tags {
+    display: flex;
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+  
+  .tag {
+    color: #666;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  
+  .tag:hover {
+    color: #333;
+  }

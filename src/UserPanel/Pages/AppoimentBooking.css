@@ -1,0 +1,42 @@
+.appointment-card {
+    border: none;
+    border-radius: 15px;
+  }
+  
+  .custom-btn {
+    background-color: #C19A5B !important;
+    border: none !important;
+    padding: 10px 30px !important;
+    font-size: 1.1rem !important;
+    transition: all 0.3s ease !important;
+  }
+  
+  .custom-btn:hover {
+    background-color: #a17f45 !important;
+    transform: translateY(-2px);
+  }
+  
+  .form-control:focus, .form-select:focus {
+    border-color: #C19A5B;
+    box-shadow: 0 0 0 0.2rem rgba(193, 154, 91, 0.25);
+  }
+  
+  .form-label {
+    font-weight: 500;
+    color: #4a4a4a;
+  }
+  
+  .appointment-card h2 {
+    color: #C19A5B;
+    font-weight: 600;
+  }
+  
+  @media (max-width: 768px) {
+    .appointment-card {
+      margin: 15px;
+    }
+    
+    .container {
+      padding: 0;
+    }
+  }

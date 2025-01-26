@@ -89,7 +89,7 @@ const Header = () => {
               <NavDropdown.Item href="/privacy-policy" className="dropdown-item-custom">
                 Privacy Policy
               </NavDropdown.Item>
-              <NavDropdown.Item href="/appointment-booking" className="dropdown-item-custom">
+              <NavDropdown.Item href="/book-appointment" className="dropdown-item-custom">
                 Appointment Booking
               </NavDropdown.Item>
             </NavDropdown>
