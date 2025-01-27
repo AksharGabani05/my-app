@@ -1,29 +1,31 @@
 import React from 'react';
 import './App.css';
-import Header from './UserPanel/components/Header/header';
+
 import UserRoutes from './UserPanel/UserRoutes';
 import AdminRoutes from './AdminPanel/AdminRoutes';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Footer from './UserPanel/components/Footer/Footer';
 import { AuthProvider } from './AdminPanel/context/AuthContext';
+import Login from './UserPanel/Pages/Login';
+import Register from './UserPanel/Pages/Register';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
 
 function App() {
   return (
     <div className="App">
+       <ToastContainer position="top-right" autoClose={3000} />
       <BrowserRouter>
         <AuthProvider>
           <Routes>
+            {/* Admin routes */}
             <Route path="/admin/*" element={<AdminRoutes />} />
-            <Route
-              path="/*"
-              element={
-                <>
-                  <Header />
-                  <UserRoutes />
-                  <Footer />
-                </>
-              }
-            />
+            
+            {/* User routes */}
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="/*" element={<UserRoutes />} />
           </Routes>
         </AuthProvider>
       </BrowserRouter>
@@ -32,5 +34,3 @@ function App() {
 }
 
 export default App;
-
-

@@ -21,6 +21,7 @@ function Sidebar() {
         <Link to="/admin/silver-products">Silver Products</Link>
         <Link to="/admin/gold-products">Gold Products</Link>
         <Link to="/admin/appointments">Appointments</Link>
+        <Link to="/admin/users">User Management</Link>
         <button onClick={handleLogout}>Logout</button>
       </nav>
     </div>

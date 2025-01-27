@@ -10,7 +10,7 @@ const Footer = () => {
             {/* Logo and Description */}
             <div className="col-md-3 mb-4">
               <h5>
-                <span style={{ color: "#000" }}>C</span>orano
+                <span style={{ color: "#c19a5b" }}>C</span>orano
               </h5>
               <p className="mb-4">
                 We are a team of designers and developers that create high
@@ -22,14 +22,14 @@ const Footer = () => {
             <div className="col-md-3 mb-4">
               <h5>Contact Us</h5>
               <p>
-                <i className="bi bi-geo-alt me-2"></i>4710-4890 Breckinridge
+                <i className="bi bi-geo-alt me-2 icon-color"></i>4710-4890 Breckinridge
                 USA
               </p>
               <p>
-                <i className="bi bi-envelope me-2"></i>demo@yourdomain.com
+                <i className="bi bi-envelope me-2 icon-color"></i>demo@yourdomain.com
               </p>
               <p>
-                <i className="bi bi-telephone me-2"></i>(012) 800 456 789-987
+                <i className="bi bi-telephone me-2 icon-color"></i>(012) 800 456 789-987
               </p>
             </div>
 

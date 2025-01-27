@@ -53,13 +53,15 @@
 }
 
 .subscribe-btn {
-    background-color: #f8f8f8;
-    border: none;
-    color: #C19A5B;
-    border: 1px solid #C19A5B;
-    padding: 0.5rem 2rem;
-    transition: all 0.3s;
+    background-color: #f8f8f8; /* Light background color */
+    border: 1px solid #C19A5B; /* Border color */
+    color: #C19A5B; /* Text color */
+    padding: 10px 30px; /* Padding for the button */
+    transition: all 0.3s ease; /* Smooth transition effect for hover */
+    cursor: pointer; /* Pointer cursor on hover */
+    margin-top: 20px;
 }
+
 .term-service{
     text-decoration: none;
     color: #C19A5B !important;
@@ -79,4 +81,7 @@
 .store-badges img {
     height: 40px;
     margin-right: 10px;
+}
+.icon-color{
+    color: #c19a5b;
 }
