@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Table, Button, Form, Modal, Row, Col } from 'react-bootstrap';
-import './GoldProductsManage.css';
 
 function GoldProductsManage() {
   const [showAddModal, setShowAddModal] = useState(false);

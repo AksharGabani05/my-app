@@ -5,7 +5,6 @@ import SilverProductsManage from './Pages/SilverProductsManage';
 import GoldProductsManage from './Pages/GoldProductsManage';
 import Sidebar from './components/Sidebar';
 import { useAuth } from './context/AuthContext';
-import './styles/Admin.css'; // We'll create this later
 import AppointmentsManage from './Pages/AppoinmentsManage';
 import Profile from './Pages/Profile';
 import UserManage from './Pages/UserManage';

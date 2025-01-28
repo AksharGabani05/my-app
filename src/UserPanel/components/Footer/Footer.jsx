@@ -4,7 +4,7 @@ import "./Footer.css"; // Optional: For additional styling if needed.
 const Footer = () => {
   return (
     <>
-      <footer className="footer">
+      <footer className="es-footer">
         <div className="container">
           <div className="row">
             {/* Logo and Description */}
@@ -22,14 +22,14 @@ const Footer = () => {
             <div className="col-md-3 mb-4">
               <h5>Contact Us</h5>
               <p>
-                <i className="bi bi-geo-alt me-2 icon-color"></i>4710-4890 Breckinridge
+                <i className="bi bi-geo-alt me-2 es-icon-color"></i>4710-4890 Breckinridge
                 USA
               </p>
               <p>
-                <i className="bi bi-envelope me-2 icon-color"></i>demo@yourdomain.com
+                <i className="bi bi-envelope me-2 es-icon-color"></i>demo@yourdomain.com
               </p>
               <p>
-                <i className="bi bi-telephone me-2 icon-color"></i>(012) 800 456 789-987
+                <i className="bi bi-telephone me-2 es-icon-color"></i>(012) 800 456 789-987
               </p>
             </div>
 
@@ -61,7 +61,7 @@ const Footer = () => {
             {/* Follow Us */}
             <div className="col-md-3 mb-4">
               <h5>Follow Us</h5>
-              <div className="social-icons mb-4">
+              <div className="es-social-icons mb-4">
                 <a href="#" className="me-2">
                   <i className="bi bi-facebook"></i>
                 </a>
@@ -78,7 +78,7 @@ const Footer = () => {
                   <i className="bi bi-vimeo"></i>
                 </a>
               </div>
-              <div className="store-badges">
+              <div className="es-store-badges">
                 <img
                   src="https://corano-demo.myshopify.com/cdn/shop/files/ezgif.com-webp-to-png_1_medium.png?v=1614347582"
                   alt="App Store"
@@ -90,7 +90,7 @@ const Footer = () => {
                 />
               </div>
               <div className="row mt-5">
-            <div className="col-12 text-center payment-icons">
+            <div className="col-12 text-center es-payment-icons">
               <img
                 src="https://corano-demo.myshopify.com/cdn/shop/files/payment_large.png?v=1613781786"
                 alt="Visa"
@@ -109,24 +109,12 @@ const Footer = () => {
               <div className="d-flex gap-3">
                 <input
                   type="email"
-                  className="form-control newsletter-input"
+                  className="form-control es-newsletter-input"
                   placeholder="email@example.com"
                 />
-                <button className="subscribe-btn">Subscribe</button>
+                <button className="es-subscribe-btn">Subscribe</button>
               </div>
-              <div className="form-check mt-3">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  id="terms"
-                />
-                <label className="form-check-label" htmlFor="terms">
-                  I agree to the{" "}
-                  <a href="#" className="term-service">
-                    Terms of Service
-                  </a>
-                </label>
-              </div>
+              
             </div>
           </div>
 

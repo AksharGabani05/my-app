@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-// import '../styles/Profile.css';
 
 function Profile() {
   const { user } = useAuth();

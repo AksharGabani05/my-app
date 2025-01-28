@@ -1,15 +1,17 @@
-.register-container {
+.es-register-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   padding: 20px;
-  background-color: #f5f5f5;
-  background-image: url(https://thumbs.dreamstime.com/z/d-wallpaper-mural-design-floral-geometric-objects-gold-ball-pearls-gold-jewelry-wallpaper-purple-flowers-will-154345462.jpg?ct=jpeg);
+  background-image: url(https://png.pngtree.com/thumb_back/fh260/back_our/20190621/ourmid/pngtree-taobao-jewelry-fresh-and-simple-gold-jewelry-poster-image_194638.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
-.register-wrapper {
+.es-register-wrapper {
   display: flex;
+  flex-direction: column;
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -18,131 +20,120 @@
   max-width: 960px;
 }
 
-.register-image {
+@media (min-width: 768px) {
+  .es-register-wrapper {
+    flex-direction: row;
+  }
+}
+
+.es-register-image {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.register-image img {
+.es-register-image img {
   width: 100%;
   max-width: 400px;
   object-fit: cover;
 }
 
-.register-card {
+.es-register-card {
   flex: 1;
-  padding: 40px;
+  padding: 20px;
 }
 
-.register-card h2 {
+@media (min-width: 768px) {
+  .es-register-card {
+    padding: 40px;
+  }
+}
+
+.es-register-card h2 {
   margin: 0 0 10px;
   color: #c19a5b;
-  font-size: 28px;
+  font-size: 24px;
   text-align: center;
 }
 
-.subtitle {
+.es-register-subtitle {
   text-align: center;
   color: #c19a5b;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
-.register-form {
+.es-register-form {
   display: flex;
   flex-direction: column;
 }
 
-.form-group {
+.es-register-form-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
 }
 
-.form-group label {
+.es-register-form-group label {
   font-weight: 500;
   color: #c19a5b;
+  padding: 10px 0px 5px 0px;
 }
 
-.form-group input {
-  padding: 12px;
+.es-register-form-group input {
   border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 16px;
-  transition: border-color 0.3s ease;
+  margin: 5px !important;
 }
 
-.form-group input:focus {
+.es-register-form-group input:focus {
   outline: none;
   border-color: #c19a5b;
-  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
 }
 
-.register-button {
-  background-color: #c19a5b;
-  color: white;
-  padding: 14px;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.register-button:hover {
-  background-color: #0056b3;
-}
-
-.register-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.login-link {
-  text-align: center;
-  margin-top: 20px;
-  color: #c19a5b;
-}
-
-.login-link a {
-  color: #c19a5b;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.login-link a:hover {
-  text-decoration: underline;
-}
-.password-wrapper {
-  display: flex;
-  align-items: center;
+.es-register-password-wrapper {
   position: relative;
 }
 
-.password-icon {
+.es-register-password-icon {
   position: absolute;
   right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
   cursor: pointer;
   color: #c19a5b;
 }
 
+.es-register-button {
+  background-color: #c19a5b;
+  padding: 14px;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
 
-@media (max-width: 768px) {
-  .register-wrapper {
-    flex-direction: column;
-  }
+.es-register-button:hover {
+  background-color: #b3884c;
+}
 
-  .register-image {
-    display: none;
-  }
+.es-register-login-link {
+  text-align: center;
+  margin-top: 20px;
+  color: #b3884c;
+}
+.es-register-login-link a{
+  text-align: center;
+  margin-top: 20px;
+  color: black;
+  text-decoration: none;
+}
 
-  .register-card {
-    padding: 20px;
-  }
-
-  .register-card h2 {
-    font-size: 24px;
+@media (min-width: 768px) {
+  .es-register-login-link {
+    margin-top: 30px;
   }
 }

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { FaUser, FaLock, FaSpinner, FaGem } from 'react-icons/fa'; // Install react-icons if not installed
+import '../styles/AdminLoginForm.css';
+
 
 function AdminLoginForm() {
   const [credentials, setCredentials] = useState({

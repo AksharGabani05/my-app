@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
-import '../styles/UserManage.css';
+
 import { PencilSquare, Trash } from 'react-bootstrap-icons';
 
 const UserManage = () => {

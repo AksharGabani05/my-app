@@ -50,10 +50,10 @@ const Register = () => {
       const data = await response.json();
 
       if (response.ok) {
-        toast.success('Registration successful! Redirecting to login...');
+        toast.success('Registration successful!');
         setTimeout(() => {
           navigate('/login');
-        }, 3000); // Delay navigation to let the toast display
+        }, 3000);
       } else {
         throw new Error(data.message);
       }
@@ -65,21 +65,21 @@ const Register = () => {
   };
 
   return (
-    <div className="register-container">
-      <div className="register-wrapper">
-        <div className="register-image">
+    <div className="es-register-container">
+      <div className="es-register-wrapper">
+        <div className="es-register-image">
           <img
-            src="https://img.freepik.com/free-vector/sign-page-abstract-concept-illustration_335657-3875.jpg?t=st=1737992535~exp=1737996135~hmac=51d30cc0f08822f03a9997e4d439115629a5f0c127f6269f706f823fc46ba033&w=900"
+            src="https://img.freepik.com/free-vector/sign-page-abstract-concept-illustration_335657-3875.jpg"
             alt="Welcome"
           />
         </div>
-        <div className="register-card">
+        <div className="es-register-card">
           <h2>Create Account</h2>
-          <p className="subtitle">Join us today! It only takes a few steps</p>
+          <p className="es-register-subtitle">Join us today! It only takes a few steps</p>
 
-          <form onSubmit={handleSubmit} className="register-form">
-            <div className="form-group">
-              <label htmlFor="fullName"><i class="bi bi-person-fill"></i> Full Name</label>
+          <form onSubmit={handleSubmit} className="es-register-form">
+            <div className="es-register-form-group">
+              <label htmlFor="fullName"><i className="bi bi-person-fill"></i> Full Name</label>
               <input
                 type="text"
                 id="fullName"
@@ -91,8 +91,8 @@ const Register = () => {
               />
             </div>
 
-            <div className="form-group">
-              <label htmlFor="email"><i class="bi bi-envelope-arrow-up-fill"></i> Email Address</label>
+            <div className="es-register-form-group">
+              <label htmlFor="email"><i className="bi bi-envelope-arrow-up-fill"></i> Email Address</label>
               <input
                 type="email"
                 id="email"
@@ -104,9 +104,9 @@ const Register = () => {
               />
             </div>
 
-            <div className="form-group password-group">
-              <label htmlFor="password"><i class="bi bi-lock-fill"></i> Password</label>
-              <div className="password-wrapper">
+            <div className="es-register-form-group es-register-password-group">
+              <label htmlFor="password"><i className="bi bi-lock-fill"></i> Password</label>
+              <div className="es-register-password-wrapper">
                 <input
                   type={showPassword ? 'text' : 'password'}
                   id="password"
@@ -117,7 +117,7 @@ const Register = () => {
                   required
                 />
                 <span
-                  className="password-icon"
+                  className="es-register-password-icon"
                   onClick={() => setShowPassword((prev) => !prev)}
                 >
                   {showPassword ? <FaEye /> : <FaEyeSlash />}
@@ -125,9 +125,9 @@ const Register = () => {
               </div>
             </div>
 
-            <div className="form-group password-group">
-              <label htmlFor="confirmPassword"><i class="bi bi-lock-fill"></i> Confirm Password</label>
-              <div className="password-wrapper">
+            <div className="es-register-form-group es-register-password-group">
+              <label htmlFor="confirmPassword"><i className="bi bi-lock-fill"></i> Confirm Password</label>
+              <div className="es-register-password-wrapper">
                 <input
                   type={showConfirmPassword ? 'text' : 'password'}
                   id="confirmPassword"
@@ -138,24 +138,24 @@ const Register = () => {
                   required
                 />
                 <span
-                  className="password-icon"
+                  className="es-register-password-icon"
                   onClick={() => setShowConfirmPassword((prev) => !prev)}
                 >
-                  {showConfirmPassword ? <FaEye /> : <FaEyeSlash /> }
+                  {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
                 </span>
               </div>
             </div>
 
             <button
               type="submit"
-              className="register-button"
+              className="es-register-button"
               disabled={loading}
             >
               {loading ? 'Creating Account...' : 'Create Account'}
             </button>
           </form>
 
-          <p className="login-link">
+          <p className="es-register-login-link">
             Already have an account? <Link to="/login">Login here</Link>
           </p>
         </div>

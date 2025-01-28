@@ -1,4 +1,4 @@
-.footer {
+.es-footer {
     background-color: #f7f7f7;
     padding: 4rem 0;
     color: #666;
@@ -7,25 +7,25 @@
     text-align: left !important;
 }
 
-.footer h5 {
+.es-footer h5 {
     color: #000;
     font-weight: 600;
     margin-bottom: 1.5rem;
 }
 
-.footer a {
+.es-footer a {
     color: #666;
     text-decoration: none;
     transition: color 0.3s, transform 0.3s;
 }
 
-.footer a:hover {
+.es-footer a:hover {
     color: #C19A5B;
     transform: translateY(20px); /* Moves the text 20px to the left */
 }
 
 
-.social-icons a {
+.es-social-icons a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -36,23 +36,23 @@
     margin-right: 10px;
 }
 
-.social-icons a:hover {
+.es-social-icons a:hover {
     border-color: #000;
 }
 
-.newsletter-input {
+.es-newsletter-input {
     border: none;
     border-bottom: 1px solid #ddd;
     border-radius: 0;
     padding: 0.5rem 0;
 }
 
-.newsletter-input:focus {
+.es-newsletter-input:focus {
     box-shadow: none;
     border-color: #000;
 }
 
-.subscribe-btn {
+.es-subscribe-btn {
     background-color: #f8f8f8; /* Light background color */
     border: 1px solid #C19A5B; /* Border color */
     color: #C19A5B; /* Text color */
@@ -62,26 +62,26 @@
     margin-top: 20px;
 }
 
-.term-service{
+.es-term-service{
     text-decoration: none;
     color: #C19A5B !important;
 }
 
-.subscribe-btn:hover {
+.es-subscribe-btn:hover {
     background-color: #000;
     color: #fff;
 }
 
 
-.payment-icons img {
+.es-payment-icons img {
     height: 25px;
     margin: 0 5px;
 }
 
-.store-badges img {
+.es-store-badges img {
     height: 40px;
     margin-right: 10px;
 }
-.icon-color{
+.es-icon-color{
     color: #c19a5b;
 }

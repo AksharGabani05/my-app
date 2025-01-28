@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import './style/Login.css';
 
 const Login = () => {
@@ -10,6 +11,7 @@ const Login = () => {
     password: '',
   });
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,14 +31,20 @@ const Login = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
         toast.success('Login successful!');
-        navigate('/dashboard'); // Replace with your desired route
+        localStorage.setItem('token', data.token); // Store JWT token
+        setTimeout(() => {
+          navigate('/dashboard'); // Redirect after login
+        }, 2000);
       } else {
         throw new Error(data.message);
       }
@@ -48,21 +56,21 @@ const Login = () => {
   };
 
   return (
-    <div className="login-container">
-      <div className="login-wrapper">
-        <div className="login-image">
+    <div className="es-login-container">
+      <div className="es-login-wrapper">
+        <div className="es-login-image">
           <img
-            src="https://img.freepik.com/free-vector/sign-page-abstract-concept-illustration_335657-3875.jpg?t=st=1737992535~exp=1737996135~hmac=51d30cc0f08822f03a9997e4d439115629a5f0c127f6269f706f823fc46ba033&w=900"
-            alt="Welcome"
+            src="https://img.freepik.com/free-vector/login-concept-illustration_114360-739.jpg"
+            alt="Login"
           />
         </div>
-        <div className="login-card">
+        <div className="es-login-card">
           <h2>Login</h2>
-          <p className="subtitle">Welcome back! Please log in to your account</p>
+          <p className="es-login-subtitle">Welcome back! Please login to your account</p>
 
-          <form onSubmit={handleSubmit} className="login-form">
-            <div className="form-group">
-              <label htmlFor="email"><i class="bi bi-envelope-arrow-up-fill"></i> Email Address</label>
+          <form onSubmit={handleSubmit} className="es-login-form">
+            <div className="es-login-form-group">
+              <label htmlFor="email"><i className="bi bi-envelope-arrow-up-fill"></i> Email Address</label>
               <input
                 type="email"
                 id="email"
@@ -74,29 +82,37 @@ const Login = () => {
               />
             </div>
 
-            <div className="form-group">
-              <label htmlFor="password"><i class="bi bi-lock-fill"></i> Password</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                placeholder="Enter your password"
-                required
-              />
+            <div className="es-login-form-group es-login-password-group">
+              <label htmlFor="password"><i className="bi bi-lock-fill"></i> Password</label>
+              <div className="es-login-password-wrapper">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  id="password"
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  placeholder="Enter your password"
+                  required
+                />
+                <span
+                  className="es-login-password-icon"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                >
+                  {showPassword ? <FaEye /> : <FaEyeSlash />}
+                </span>
+              </div>
             </div>
 
             <button
               type="submit"
-              className="login-button"
+              className="es-login-button"
               disabled={loading}
             >
-              {loading ? 'Logging in...' : 'Log In'}
+              {loading ? 'Logging in...' : 'Login'}
             </button>
           </form>
 
-          <p className="register-link">
+          <p className="es-login-register-link">
             Don't have an account? <Link to="/register">Register here</Link>
           </p>
         </div>
