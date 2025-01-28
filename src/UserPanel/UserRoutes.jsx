@@ -11,6 +11,8 @@ import Gold from './Pages/Gold';
 import Header from './components/Header/header';
 import Footer from './components//Footer/Footer'
 import SingleProduct from './Pages/SingleProduct';
+import About from './Pages/About';
+import Profile from './Pages/Profile';
 
 const UserRoutes = () => {
   return (
@@ -26,7 +28,9 @@ const UserRoutes = () => {
         <Route path="/faq" element={<Faq />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/shop/gold" element={<Gold />} />
+        <Route path="/about" element={<About />} />
         <Route path="/shop/product/:id" element={<SingleProduct />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer />
     </>

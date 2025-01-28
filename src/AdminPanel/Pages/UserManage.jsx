@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { Table, Button, Modal, Form } from 'react-bootstrap';
-
+import '../styles/userManage.css';
 import { PencilSquare, Trash } from 'react-bootstrap-icons';
 
 const UserManage = () => {
@@ -26,25 +26,23 @@ const UserManage = () => {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      // Replace this fetch call with your API when ready
-      const response = await fetch('/api/admin/users');
+      const response = await fetch('https://jsonplaceholder.typicode.com/users');
       if (response.ok) {
         const data = await response.json();
-        setUsers(data);
+        // Transform the data to match our expected structure
+        const transformedData = data.map(user => ({
+          _id: user.id.toString(),
+          fullName: user.name,
+          email: user.email,
+          role: user.id === 1 ? 'admin' : 'user', // Example role assignment
+          status: 'active' // Default status
+        }));
+        setUsers(transformedData);
       } else {
-        throw new Error('API unavailable');
+        throw new Error('Failed to fetch users');
       }
     } catch (error) {
-      // Fallback to mock data in case of API failure
-      const mockData = [
-        { _id: '1', fullName: 'John Doe', email: 'john@example.com', role: 'admin', status: 'active' },
-        { _id: '2', fullName: 'Jane Smith', email: 'jane@example.com', role: 'user', status: 'inactive' },
-        { _id: '3', fullName: 'Bob Johnson', email: 'bob@example.com', role: 'user', status: 'active' },
-        { _id: '4', fullName: 'Alice Williams', email: 'alice@example.com', role: 'admin', status: 'suspended' },
-        { _id: '5', fullName: 'Charlie Brown', email: 'charlie@example.com', role: 'user', status: 'active' },
-      ];
-      setUsers(mockData);
-      toast.warn('Failed to fetch users, displaying mock data.');
+      toast.error('Failed to fetch users. Please try again later.');
     } finally {
       setLoading(false);
     }
@@ -64,44 +62,53 @@ const UserManage = () => {
 
   const handleUpdate = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      const response = await fetch(`/api/admin/users/${selectedUser._id}`, {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${selectedUser._id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          id: selectedUser._id,
+          name: formData.fullName,
+          email: formData.email,
+        }),
       });
-      const data = await response.json();
       
       if (response.ok) {
         toast.success('User updated successfully');
         setShowModal(false);
         fetchUsers();
       } else {
-        throw new Error(data.message);
+        throw new Error('Failed to update user');
       }
     } catch (error) {
-      toast.error(error.message || 'Failed to update user');
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleDelete = async (userId) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
+      setLoading(true);
       try {
-        const response = await fetch(`/api/admin/users/${userId}`, {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`, {
           method: 'DELETE',
         });
         
         if (response.ok) {
           toast.success('User deleted successfully');
-          fetchUsers();
+          // Remove user from local state since the API is just a mock
+          setUsers(users.filter(user => user._id !== userId));
         } else {
-          const data = await response.json();
-          throw new Error(data.message);
+          throw new Error('Failed to delete user');
         }
       } catch (error) {
-        toast.error(error.message || 'Failed to delete user');
+        toast.error(error.message);
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -150,7 +157,7 @@ const UserManage = () => {
         <Table striped bordered hover responsive>
           <thead>
             <tr>
-              <th onClick={() => handleSort('fullName')} className="sortable-header">
+              <th onClick={() => handleSort('fullName')} style={{ cursor: 'pointer' }} className="sortable-header">
                 Name {sortField === 'fullName' && (
                   <span className="sort-indicator">{sortDirection === 'asc' ? '↑' : '↓'}</span>
                 )}
@@ -166,35 +173,41 @@ const UserManage = () => {
             </tr>
           </thead>
           <tbody>
-            {filteredUsers.map((user) => (
-              <tr key={user._id}>
-                <td>{user.fullName}</td>
-                <td>{user.email}</td>
-                <td>{user.role}</td>
-                <td>
-                  <span className={`status-badge ${user.status}`}>
-                    {user.status}
-                  </span>
-                </td>
-                <td>
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    onClick={() => handleEdit(user)}
-                    className="me-2"
-                  >
-                    <PencilSquare className="me-1" />
-                  </Button>
-                  <Button
-                    variant="danger"
-                    size="sm"
-                    onClick={() => handleDelete(user._id)}
-                  >
-                    <Trash className="me-1" />
-                  </Button>
-                </td>
+            {filteredUsers.length === 0 ? (
+              <tr>
+                <td colSpan="5" className="text-center">No users found</td>
               </tr>
-            ))}
+            ) : (
+              filteredUsers.map((user) => (
+                <tr key={user._id}>
+                  <td>{user.fullName}</td>
+                  <td>{user.email}</td>
+                  <td>{user.role}</td>
+                  <td>
+                    <span className={`status-badge ${user.status}`}>
+                      {user.status}
+                    </span>
+                  </td>
+                  <td>
+                    <Button
+                      variant="primary"
+                      size="sm"
+                      onClick={() => handleEdit(user)}
+                      className="me-2"
+                    >
+                      <PencilSquare className="me-1" />
+                    </Button>
+                    <Button
+                      variant="danger"
+                      size="sm"
+                      onClick={() => handleDelete(user._id)}
+                    >
+                      <Trash className="me-1" />
+                    </Button>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </Table>
       )}

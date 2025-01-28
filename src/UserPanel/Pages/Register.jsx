@@ -7,7 +7,7 @@ import './style/Register.css';
 const Register = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    fullName: '',
+    fullName: '', // Adjusted to match the API field
     email: '',
     password: '',
     confirmPassword: '',
@@ -24,9 +24,36 @@ const Register = () => {
     }));
   };
 
+  const validatePassword = (password) => {
+    const minLength = password.length >= 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumber = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+    return {
+      isValid: minLength && hasUpperCase && hasLowerCase && hasNumber && hasSpecialChar,
+      errors: {
+        minLength: !minLength ? 'Password must be at least 8 characters long' : '',
+        hasUpperCase: !hasUpperCase ? 'Password must contain at least one uppercase letter' : '',
+        hasLowerCase: !hasLowerCase ? 'Password must contain at least one lowercase letter' : '',
+        hasNumber: !hasNumber ? 'Password must contain at least one number' : '',
+        hasSpecialChar: !hasSpecialChar ? 'Password must contain at least one special character' : '',
+      },
+    };
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
+    // Check if all fields are filled
+    const emptyFields = Object.keys(formData).filter(key => !formData[key].trim());
+    if (emptyFields.length > 0) {
+      toast.error('All fields are required');
+      setLoading(false);
+      return;
+    }
 
     if (formData.password !== formData.confirmPassword) {
       toast.error("Passwords don't match!");
@@ -34,31 +61,41 @@ const Register = () => {
       return;
     }
 
+    const passwordValidation = validatePassword(formData.password);
+    if (!passwordValidation.isValid) {
+      const errors = Object.values(passwordValidation.errors).filter((error) => error !== '');
+      errors.forEach((error) => toast.error(error));
+      setLoading(false);
+      return;
+    }
+
     try {
-      const response = await fetch('/api/auth/register', {
+      const response = await fetch('https://7fthrp5w-8080.inc1.devtunnels.ms/api/users/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          fullName: formData.fullName,
+          fullName: formData.fullName, // Match API requirements
           email: formData.email,
           password: formData.password,
         }),
+        credentials: 'include',
       });
 
-      const data = await response.json();
-
-      if (response.ok) {
-        toast.success('Registration successful!');
-        setTimeout(() => {
-          navigate('/login');
-        }, 3000);
-      } else {
-        throw new Error(data.message);
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Registration failed');
       }
+
+      const data = await response.json();
+      toast.success(data.message || 'Registration successful!'); // Use the message from the API response
+      setTimeout(() => {
+        navigate('/login');
+      }, 3000);
     } catch (error) {
-      toast.error(error.message || 'Registration failed');
+      console.error('Registration error:', error);
+      toast.error(error.message || 'Failed to connect to the server. Please try again later.');
     } finally {
       setLoading(false);
     }
@@ -83,7 +120,7 @@ const Register = () => {
               <input
                 type="text"
                 id="fullName"
-                name="fullName"
+                name="fullName" // Match API field name
                 value={formData.fullName}
                 onChange={handleChange}
                 placeholder="Enter your full name"

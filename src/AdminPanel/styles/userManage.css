@@ -1,0 +1,43 @@
+.sortable-header {
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+  }
+  
+  .sortable-header:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+  
+  .sort-indicator {
+    margin-left: 8px;
+    font-size: 0.8em;
+  }
+  
+  .status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 0.85em;
+    text-transform: capitalize;
+  }
+  
+  .status-badge.active {
+    background-color: #28a745;
+    color: white;
+  }
+  
+  .status-badge.inactive {
+    background-color: #6c757d;
+    color: white;
+  }
+  
+  .status-badge.suspended {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+  }

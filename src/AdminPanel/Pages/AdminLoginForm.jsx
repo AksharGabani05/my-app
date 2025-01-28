@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { FaUser, FaLock, FaSpinner, FaGem } from 'react-icons/fa'; // Install react-icons if not installed
+import { FaUser, FaLock, FaSpinner, FaGem } from 'react-icons/fa';
 import '../styles/AdminLoginForm.css';
 
-
 function AdminLoginForm() {
-  const [credentials, setCredentials] = useState({
-    username: '',
-    password: '',
-  });
+  const [credentials, setCredentials] = useState({ username: '', password: '' });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -19,7 +15,7 @@ function AdminLoginForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-    
+
     if (!credentials.username.trim() || !credentials.password.trim()) {
       setError('Please fill in all fields');
       return;

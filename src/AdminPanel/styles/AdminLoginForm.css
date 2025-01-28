@@ -1,3 +1,4 @@
+/* Add the color C19A5B as requested */
 .login-container {
   min-height: 100vh;
   display: flex;
@@ -30,7 +31,7 @@
   width: 80px;
   height: 80px;
   margin: 0 auto 1.5rem;
-  background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+  background: #C19A5B;  /* New golden tone */
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -73,30 +74,33 @@
 .input-icon {
   position: absolute;
   left: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 62%;
+  transform: translateY(-50%);  /* Center the icon vertically */
   color: #94a3b8;
+  pointer-events: none;  /* Ensure the icon doesn't interfere with input focus */
 }
 
 .input-wrapper input {
   width: 100%;
-  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  padding: 0.75rem 1rem 0.75rem 2.75rem; /* Add more left padding to accommodate the icon */
   border: 2px solid #e2e8f0;
   border-radius: 8px;
   font-size: 1rem;
+  height: 3rem;  /* Ensure input height is consistent for alignment */
   transition: all 0.3s ease;
 }
 
+
 .input-wrapper input:focus {
-  border-color: #3498db;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+  border-color: #C19A5B;  /* Apply golden color to focused input */
+  box-shadow: 0 0 0 3px rgba(193, 154, 91, 0.1);
   outline: none;
 }
 
 .password-toggle {
   position: absolute;
   right: 1rem;
-  top: 50%;
+  top: 65%;
   transform: translateY(-50%);
   background: none;
   border: none;
@@ -108,7 +112,7 @@
 .submit-button {
   width: 100%;
   padding: 0.75rem;
-  background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%);
+  background: #C19A5B;  /* Apply golden color */
   color: white;
   border: none;
   border-radius: 8px;
@@ -120,7 +124,7 @@
 
 .submit-button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.2);
+  box-shadow: 0 4px 12px rgba(193, 154, 91, 0.2);
 }
 
 .submit-button:disabled {
