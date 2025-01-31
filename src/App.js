@@ -10,12 +10,12 @@ import Login from './UserPanel/Pages/Login';
 import Register from './UserPanel/Pages/Register';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-
+import ForgotPassword from './UserPanel/components/forgotpassword/ForgotPassword';
 
 function App() {
   return (
     <div className="App">
-       <ToastContainer position="top-right" autoClose={3000} />
+       <ToastContainer position="top-right" autoClose={1000} />
       <BrowserRouter>
         <AuthProvider>
           <Routes>
@@ -25,6 +25,7 @@ function App() {
             {/* User routes */}
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
+            <Route path="forgot-password" element={<ForgotPassword />} />
             <Route path="/*" element={<UserRoutes />} />
           </Routes>
         </AuthProvider>

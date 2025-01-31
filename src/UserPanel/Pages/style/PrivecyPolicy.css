@@ -1,0 +1,101 @@
+/* Privacy Policy Container */
+.privacy-policy-container {
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+  }
+  
+  /* Title */
+  .privacy-policy-container h1 {
+    color: #c19a5b; /* Golden color */
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center; /* Center-aligning the title */
+    margin-bottom: 30px; /* Spacing below the title */
+  }
+  
+  /* Content Section */
+  .privacy-policy-content {
+    max-width: 800px; /* Restrict content width */
+    margin: 0 auto; /* Center the content */
+    background-color: white; /* White background for the content */
+    padding: 30px;
+    border-radius: 8px;
+  }
+  
+  /* Paragraph Styling */
+  .privacy-policy-container .privacy-policy-content p {
+    font-size: 16px;
+    color: #333;
+    line-height: 1.6;
+    margin-bottom: 20px; /* Space between paragraphs */
+  }
+  
+  /* Heading Style (h3) */
+  .privacy-policy-container h3 {
+    color: #c19a5b; /* Golden color */
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  /* List Style for unordered list */
+  .privacy-policy-container ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .privacy-policy-container ul li {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Ordered list Style */
+  .privacy-policy-container ol {
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .privacy-policy-container ol li {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Links */
+  .privacy-policy-container a {
+    color: #c19a5b;
+    text-decoration: none;
+  }
+  
+  .privacy-policy-container a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .privacy-policy-container {
+      padding: 20px;
+    }
+  
+    .privacy-policy-container h1 {
+      font-size: 28px;
+    }
+  
+    .privacy-policy-container .privacy-policy-content {
+      padding: 20px;
+    }
+  
+    .privacy-policy-container h3 {
+      font-size: 20px;
+    }
+  
+    .privacy-policy-container .privacy-policy-content p,
+    .privacy-policy-container ul li,
+    .privacy-policy-container ol li {
+      font-size: 14px;
+    }
+  }
+  

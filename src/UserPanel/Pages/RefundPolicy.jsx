@@ -1,7 +1,7 @@
 // src/pages/RefundPolicy.js
 import React, { useState, useEffect } from "react";
 import Loader from "../components/Loader/Loader"; // Import the Loader component
-
+import './style/Refund-Policy.css';
 const RefundPolicy = () => {
   const [loading, setLoading] = useState(true);
 
@@ -17,10 +17,10 @@ const RefundPolicy = () => {
   }
 
   return (
-    <div className="container py-5">
-      <h1 className="text-center mb-4">Refund Policy</h1>
-      <div className="row">
-        <div className="col-md-8 mx-auto">
+    <div className="refund-policy-container">
+      <h1 className="text-center">Refund Policy</h1>
+      <div className="refund-policy-content">
+        <div className="refund-policy-text">
           <p>
             Thank you for shopping with us. If you are not entirely satisfied
             with your purchase, we’re here to help.

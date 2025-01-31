@@ -8,7 +8,7 @@
 }
 
 .es-footer h5 {
-    color: #000;
+    color: #C19A5B;
     font-weight: 600;
     margin-bottom: 1.5rem;
 }
@@ -84,4 +84,5 @@
 }
 .es-icon-color{
     color: #c19a5b;
+    font-weight: 900 !important;
 }

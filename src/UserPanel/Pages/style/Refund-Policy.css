@@ -1,0 +1,85 @@
+/* Refund Policy Container */
+
+  /* Title (Refund Policy) */
+  .refund-policy-container h1 {
+    color: #c19a5b; /* Golden color */
+    font-size: 36px;
+    padding-top: 20px;
+    font-weight: bold;
+    text-align: center; /* Center-aligning the title */
+    margin-bottom: 15px; /* Space below the title */
+  }
+  
+  /* Content Section */
+  .refund-policy-content {
+    max-width: 800px; /* Restrict content width */
+    margin: 0 auto; /* Center the content */
+    background-color: white; /* White background for the content */
+    padding: 30px;
+    border-radius: 8px;
+    /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); */
+  }
+  
+  /* Text for Paragraphs */
+  .refund-policy-container .refund-policy-text p {
+    font-size: 16px;
+    color: #333; /* Dark text for readability */
+    line-height: 1.6;
+    margin-bottom: 20px; /* Space between paragraphs */
+  }
+  
+  /* Heading Style (h3 for sections like Returns, Refunds) */
+  .refund-policy-container h3 {
+    color: #c19a5b; /* Golden color */
+    font-size: 24px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  /* List Style for Conditions and Details */
+  .refund-policy-container ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .refund-policy-container ul li {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* Link Style for Email and Phone */
+  .refund-policy-container a {
+    color: #c19a5b;
+    text-decoration: none;
+  }
+  
+  .refund-policy-container a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive Design: Ensure the page is responsive on smaller screens */
+  @media (max-width: 768px) {
+    .refund-policy-container {
+      padding: 20px;
+    }
+  
+    .refund-policy-container h1 {
+      font-size: 28px;
+    }
+  
+    .refund-policy-container .refund-policy-content {
+      padding: 20px;
+    }
+  
+    .refund-policy-container h3 {
+      font-size: 20px;
+    }
+  
+    .refund-policy-container .refund-policy-text p,
+    .refund-policy-container ul li {
+      font-size: 14px;
+    }
+  }
+  

@@ -17,15 +17,26 @@ const Header = () => {
   const [showSidebar, setShowSidebar] = useState(false);
 
   useEffect(() => {
-    // Check if user is logged in (you can modify this based on your auth implementation)
-    const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token);
+    // Check authentication status whenever it might change
+    const checkAuth = () => {
+      const token = localStorage.getItem('token');
+      setIsLoggedIn(!!token);
+    };
+
+    checkAuth();
+    // Add event listener for storage changes
+    window.addEventListener('storage', checkAuth);
+    
+    return () => {
+      window.removeEventListener('storage', checkAuth);
+    };
   }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
-    // You might want to redirect to home page or login page here
+    setShowProfileOptions(false);
+    window.location.href = '/login'; // Force a full page refresh
   };
 
   const toggleProfileOptions = () => {
@@ -198,7 +209,7 @@ const Header = () => {
                 <div className="profile-options bg-white shadow rounded position-absolute end-0 mt-2 p-3">
                   {isLoggedIn ? (
                     <>
-                      <a href="/profile" className="d-block text-decoration-none text-dark mb-2">
+                      <a href="/user/profile" className="d-block text-decoration-none text-dark mb-2">
                         Profile
                       </a>
                       <a href="/orders" className="d-block text-decoration-none text-dark mb-2">

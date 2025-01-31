@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute';
 
 import PrivacyPolicy from './Pages/PrivecyPolicy';
 import RefundPolicy from './Pages/RefundPolicy';
@@ -13,6 +14,8 @@ import Footer from './components//Footer/Footer'
 import SingleProduct from './Pages/SingleProduct';
 import About from './Pages/About';
 import Profile from './Pages/Profile';
+import ResetPassword from './components/resetpassword/ResetPassword';
+import UpdateProfile from './components/updateprofile/UpdateProfile';
 
 const UserRoutes = () => {
   return (
@@ -30,7 +33,30 @@ const UserRoutes = () => {
         <Route path="/shop/gold" element={<Gold />} />
         <Route path="/about" element={<About />} />
         <Route path="/shop/product/:id" element={<SingleProduct />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route
+          path="/user/profile"
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user/update-profile"
+          element={
+            <ProtectedRoute>
+              <UpdateProfile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user/reset-password"
+          element={
+            <ProtectedRoute>
+              <ResetPassword />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
       <Footer />
     </>
