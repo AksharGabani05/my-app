@@ -8,6 +8,8 @@ import {
   NavDropdown,
   Offcanvas,
 } from "react-bootstrap";
+import Cookies from 'js-cookie';
+import { useNavigate } from 'react-router-dom';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import "./header.css";
 
@@ -15,28 +17,27 @@ const Header = () => {
   const [showProfileOptions, setShowProfileOptions] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // Check authentication status whenever it might change
+    // Check authentication status using Cookies
     const checkAuth = () => {
-      const token = localStorage.getItem('token');
+      const token = Cookies.get('token');
       setIsLoggedIn(!!token);
     };
 
     checkAuth();
-    // Add event listener for storage changes
-    window.addEventListener('storage', checkAuth);
+    // Check auth status every time component mounts
+    const interval = setInterval(checkAuth, 1000);
     
-    return () => {
-      window.removeEventListener('storage', checkAuth);
-    };
+    return () => clearInterval(interval);
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    Cookies.remove('token');
     setIsLoggedIn(false);
     setShowProfileOptions(false);
-    window.location.href = '/login'; // Force a full page refresh
+    navigate('/login');
   };
 
   const toggleProfileOptions = () => {
@@ -60,9 +61,16 @@ const Header = () => {
             <i className="bi bi-search iconbutton"></i>
           </Button>
           {isLoggedIn && (
-            <Button variant="link" className="icon-button me-2 d-lg-none" aria-label="Cart">
-              <i className="bi bi-bag-check iconbutton"></i>
-            </Button>
+            <>
+              <Button 
+                variant="link" 
+                className="icon-button me-2 d-lg-none" 
+                onClick={() => navigate('/cart')}
+                aria-label="Cart"
+              >
+                <i className="bi bi-bag-check iconbutton"></i>
+              </Button>
+            </>
           )}
           <Navbar.Toggle 
             aria-controls="navbar-nav" 
@@ -192,7 +200,12 @@ const Header = () => {
               <i className="bi bi-search iconbutton"></i>
             </Button>
             {isLoggedIn && (
-              <Button variant="link" className="icon-button me-3" aria-label="Cart">
+              <Button 
+                variant="link" 
+                className="icon-button me-3" 
+                onClick={() => navigate('/cart')}
+                aria-label="Cart"
+              >
                 <i className="bi bi-bag-check iconbutton"></i>
               </Button>
             )}
@@ -209,27 +222,50 @@ const Header = () => {
                 <div className="profile-options bg-white shadow rounded position-absolute end-0 mt-2 p-3">
                   {isLoggedIn ? (
                     <>
-                      <a href="/user/profile" className="d-block text-decoration-none text-dark mb-2">
+                      <Button 
+                        variant="link" 
+                        className="d-block text-decoration-none text-dark mb-2"
+                        onClick={() => navigate('/user/profile')}
+                      >
                         Profile
-                      </a>
-                      <a href="/orders" className="d-block text-decoration-none text-dark mb-2">
+                      </Button>
+                      <Button 
+                        variant="link" 
+                        className="d-block text-decoration-none text-dark mb-2"
+                        onClick={() => navigate('/user/orders')}
+                      >
                         Orders
-                      </a>
-                      <button
+                      </Button>
+                      <Button 
+                        variant="link" 
+                        className="d-block text-decoration-none text-dark mb-2"
+                        onClick={() => navigate('/cart')}
+                      >
+                        Cart
+                      </Button>
+                      <Button
                         onClick={handleLogout}
                         className="btn btn-link p-0 text-dark text-decoration-none"
                       >
                         Logout
-                      </button>
+                      </Button>
                     </>
                   ) : (
                     <>
-                      <a href="/login" className="d-block text-decoration-none text-dark mb-2">
+                      <Button 
+                        variant="link" 
+                        className="d-block text-decoration-none text-dark mb-2"
+                        onClick={() => navigate('/login')}
+                      >
                         Login
-                      </a>
-                      <a href="/register" className="d-block text-decoration-none text-dark mb-2">
+                      </Button>
+                      <Button 
+                        variant="link" 
+                        className="d-block text-decoration-none text-dark mb-2"
+                        onClick={() => navigate('/register')}
+                      >
                         Register
-                      </a>
+                      </Button>
                     </>
                   )}
                 </div>

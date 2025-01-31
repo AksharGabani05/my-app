@@ -3,74 +3,91 @@ import { Container, Card, Form, Button } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const API_URL = "https://jwellary-ecommerce.onrender.com/api/users/update-profile";
+const PROFILE_API = "https://jwellary-ecommerce.onrender.com/api/users/profile"; // GET Profile API
+const UPDATE_PROFILE_API = "https://jwellary-ecommerce.onrender.com/api/users/update-profile"; // PUT Update API
+
+// Token को cookies से fetch करने का function
+const getTokenFromCookies = () => {
+  const cookies = document.cookie.split("; ");
+  const tokenCookie = cookies.find((row) => row.startsWith("token="));
+  return tokenCookie ? tokenCookie.split("=")[1] : null;
+};
 
 const UpdateProfile = () => {
   const [user, setUser] = useState({
     profilePicture: { url: "" },
-    fullName: "",
+    name: "",
     email: "",
   });
 
+  // **1️⃣ Fetch User Profile (GET API)**
   useEffect(() => {
-    // Fetch logged-in user data from API
-    const fetchUserData = async () => {
+    const fetchUserProfile = async () => {
+      const token = getTokenFromCookies();
+      if (!token) {
+        toast.error("User not authenticated!");
+        return;
+      }
+
       try {
-        const response = await fetch(API_URL, {
+        const response = await fetch(PROFILE_API, {  // ✅ सही GET API
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`, // Ensure user is authenticated
+            Authorization: `Bearer ${token}`,
           },
         });
+
         const data = await response.json();
         if (response.ok) {
           setUser({
-            profilePicture: { url: data.user.profilePicture.url },
-            fullName: data.user.fullName,
+            profilePicture: { url: data.user.profilePicture?.url || "" },
+            name: data.user.name,
             email: data.user.email,
           });
         } else {
-          toast.error("Failed to load user data");
+          toast.error("Failed to load user profile");
         }
       } catch (error) {
-        console.error("Error fetching user data:", error);
+        console.error("Error fetching profile data:", error);
         toast.error("Something went wrong!");
       }
     };
 
-    fetchUserData();
+    fetchUserProfile();
   }, []);
 
+  // Input fields handle करने के लिए
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setUser({ ...user, profilePicture: { url: imageUrl } });
-    }
-  };
-
+  // **2️⃣ Update Profile (PUT API)**
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = getTokenFromCookies();
+    if (!token) {
+      toast.error("User not authenticated!");
+      return;
+    }
+
     try {
-      const response = await fetch(API_URL, {
+      const response1 = await fetch(UPDATE_PROFILE_API, {  // ✅ सही UPDATE API
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
-          fullName: user.fullName,
+          name: user.name,
           profilePicture: user.profilePicture.url,
         }),
       });
 
-      const data = await response.json();
-      if (response.ok) {
+
+      const data = await response1.json();
+      console.log("data1",data)
+      if (response1.ok) {
         toast.success(data.message || "Profile updated successfully");
       } else {
         toast.error(data.message || "Failed to update profile");
@@ -94,27 +111,15 @@ const UpdateProfile = () => {
                 alt="Profile"
                 className="profile-image"
               />
-              <div className="image-upload">
-                <label htmlFor="profile-image">
-                  <i className="bi bi-camera-fill camera-icon"></i>
-                </label>
-                <input
-                  type="file"
-                  id="profile-image"
-                  accept="image/*"
-                  style={{ display: "none" }}
-                  onChange={handleImageChange}
-                />
-              </div>
             </div>
           </div>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
-              <Form.Label>Full Name</Form.Label>
+              <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"
-                name="fullName"
-                value={user.fullName}
+                name="name"
+                value={user.name}
                 onChange={handleChange}
                 required
               />
@@ -123,14 +128,9 @@ const UpdateProfile = () => {
               <Form.Label>Email</Form.Label>
               <Form.Control type="email" value={user.email} disabled />
             </Form.Group>
-            <div className="button-group">
-              <Button type="submit" className="update-button">
-                Save Changes
-              </Button>
-              <Button variant="outline-secondary" className="cancel-button">
-                Cancel
-              </Button>
-            </div>
+            <Button type="submit" className="update-button">
+              Save Changes
+            </Button>
           </Form>
         </Card.Body>
       </Card>

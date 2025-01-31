@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import Cookies from 'js-cookie';
 import './style/Login.css';
 
 const Login = () => {
@@ -21,6 +22,8 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("form",formData);
+    
     try {
       const response = await fetch('https://jwellary-ecommerce.onrender.com/api/users/login', {
         method: 'POST',
@@ -32,17 +35,22 @@ const Login = () => {
       });
 
       const data = await response.json();
-
-      if (response.ok) {
+      console.log("Login response:", data);
+      
+      if (response.ok && data.token) {
+        const token = data.token;
+        Cookies.set('token', token);
+        console.log("Token stored:", token);
+        
         toast.success('Login successful!');
-        localStorage.setItem('token', data.token);
         setTimeout(() => {
           navigate('/');
-        }, 2000);
+        }, 1000);
       } else {
         toast.error(data.message || 'Login failed');
       }
     } catch (error) {
+      
       console.error('Login error:', error);
       toast.error('An error occurred. Please try again.');
     }

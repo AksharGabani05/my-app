@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-
+import  Cookies from 'js-cookie'
 const ProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
 
@@ -38,7 +38,10 @@ const ProtectedRoute = ({ children }) => {
     }
   };
 
-  const isAuthenticated = Boolean(getToken());
+  let token=Cookies.get("token")
+  console.log("token",token);
+  
+  const isAuthenticated = Boolean(token);
 
   useEffect(() => {
     if (!isAuthenticated) {

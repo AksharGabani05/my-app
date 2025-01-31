@@ -16,6 +16,8 @@ import About from './Pages/About';
 import Profile from './Pages/Profile';
 import ResetPassword from './components/resetpassword/ResetPassword';
 import UpdateProfile from './components/updateprofile/UpdateProfile';
+import Cart from './Pages/Cart';
+import Orders from './Pages/Orders';
 
 const UserRoutes = () => {
   return (
@@ -54,6 +56,22 @@ const UserRoutes = () => {
           element={
             <ProtectedRoute>
               <ResetPassword />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user/orders"
+          element={
+            <ProtectedRoute>
+              <Orders />
             </ProtectedRoute>
           }
         />
