@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Container, Card, Form, Button } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const PROFILE_API = "https://jwellary-ecommerce.onrender.com/api/users/profile"; // GET Profile API
-const UPDATE_PROFILE_API = "https://jwellary-ecommerce.onrender.com/api/users/update-profile"; // PUT Update API
+const PROFILE_API = "https://jwellary-ecommerce.onrender.com/api/users/profile";
+const UPDATE_PROFILE_API = "https://jwellary-ecommerce.onrender.com/api/users/update-profile";
 
-// Token को cookies से fetch करने का function
 const getTokenFromCookies = () => {
   const cookies = document.cookie.split("; ");
   const tokenCookie = cookies.find((row) => row.startsWith("token="));
@@ -18,9 +18,9 @@ const UpdateProfile = () => {
     profilePicture: { url: "" },
     name: "",
     email: "",
+    file: null, // Store the selected image file
   });
 
-  // **1️⃣ Fetch User Profile (GET API)**
   useEffect(() => {
     const fetchUserProfile = async () => {
       const token = getTokenFromCookies();
@@ -30,23 +30,16 @@ const UpdateProfile = () => {
       }
 
       try {
-        const response = await fetch(PROFILE_API, {  // ✅ सही GET API
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
+        const response = await axios.get(PROFILE_API, {
+          headers: { Authorization: `Bearer ${token}` },
         });
 
-        const data = await response.json();
-        if (response.ok) {
+        if (response.data.user) {
           setUser({
-            profilePicture: { url: data.user.profilePicture?.url || "" },
-            name: data.user.name,
-            email: data.user.email,
+            profilePicture: { url: response.data.user.profilePicture?.url || "" },
+            name: response.data.user.fullName,
+            email: response.data.user.email,
           });
-        } else {
-          toast.error("Failed to load user profile");
         }
       } catch (error) {
         console.error("Error fetching profile data:", error);
@@ -57,12 +50,21 @@ const UpdateProfile = () => {
     fetchUserProfile();
   }, []);
 
-  // Input fields handle करने के लिए
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  // **2️⃣ Update Profile (PUT API)**
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setUser((prevUser) => ({
+        ...prevUser,
+        profilePicture: { url: URL.createObjectURL(file) }, // Set preview URL
+        file: file, // Store actual file for upload
+      }));
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const token = getTokenFromCookies();
@@ -71,30 +73,26 @@ const UpdateProfile = () => {
       return;
     }
 
+    const formData = new FormData();
+    formData.append("fullName", user.name);
+    formData.append("email", user.email);
+
+    if (user.file) {
+      formData.append("profilePicture", user.file);
+    }
+
     try {
-      const response1 = await fetch(UPDATE_PROFILE_API, {  // ✅ सही UPDATE API
-        method: "PUT",
+      const response = await axios.put(UPDATE_PROFILE_API, formData, {
         headers: {
-          "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
         },
-        body: JSON.stringify({
-          name: user.name,
-          profilePicture: user.profilePicture.url,
-        }),
       });
 
-
-      const data = await response1.json();
-      console.log("data1",data)
-      if (response1.ok) {
-        toast.success(data.message || "Profile updated successfully");
-      } else {
-        toast.error(data.message || "Failed to update profile");
-      }
+      toast.success(response.data.message || "Profile updated successfully");
     } catch (error) {
       console.error("Error updating profile:", error);
-      toast.error("Something went wrong!");
+      toast.error(error.response?.data?.message || "Failed to update profile");
     }
   };
 
@@ -112,6 +110,10 @@ const UpdateProfile = () => {
                 className="profile-image"
               />
             </div>
+            <Form.Group className="mb-3">
+              <Form.Label>Change Profile Picture</Form.Label>
+              <Form.Control type="file" accept="image/*" onChange={handleFileChange} />
+            </Form.Group>
           </div>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3">
@@ -126,7 +128,13 @@ const UpdateProfile = () => {
             </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" value={user.email} disabled />
+              <Form.Control
+                type="email"
+                name="email"
+                value={user.email}
+                onChange={handleChange}
+                required
+              />
             </Form.Group>
             <Button type="submit" className="update-button">
               Save Changes

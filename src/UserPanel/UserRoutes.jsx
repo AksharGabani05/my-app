@@ -37,7 +37,7 @@ const UserRoutes = () => {
         <Route path="/contact" element={<Contact />} />
         <Route path="/book-appointment" element={<AppointmentBooking />} />
         <Route path="/faq" element={<Faq />} />
-        {/* <Route path="/blog" element={<Blog />} /> */}
+        <Route path="/blog" element={<Blog />} />
         <Route path="/shop/gold" element={<Gold />} />
         <Route path="/shop/silver" element={<SilverProducts />} />
         <Route path="/shop/bronze" element={<BronzeProducts />} />

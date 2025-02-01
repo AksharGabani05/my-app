@@ -47,6 +47,7 @@
   padding: 12px;
   font-size: 1rem;
   transition: all 0.3s ease;
+  margin-top: 0 !important;
 }
 
 .custom-input:focus,
@@ -64,9 +65,9 @@
 }
 
 .custom-btn {
-  background-color: #C19A5B;
-  border: none;
-  padding: 12px 40px;
+  background-color: #C19A5B !important;
+  border: none !important;
+  padding: 14px 40px !important;
   font-size: 1.1rem;
   border-radius: 10px;
   font-weight: 500;
@@ -77,7 +78,6 @@
 
 .custom-btn:hover {
   background-color: #a17f45;
-  transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(193, 154, 91, 0.3);
 }
 
