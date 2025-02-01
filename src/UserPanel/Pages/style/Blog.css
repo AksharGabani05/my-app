@@ -1,208 +1,178 @@
+/* Blog Page Styles */
 .blog-page {
-    min-height: 100vh;
-  }
-  
-  .blog-hero {
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-                url('https://soliloquywp.com/wp-content/uploads/2018/11/nb_ist_cover.jpg') center/cover no-repeat;
-    padding: 100px 0;
-    text-align: center;
-    color: white;
-    margin-bottom: 50px;
-  }
-  
-  .blog-hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-  }
-  
-  .blog-hero p {
-    font-size: 1.2rem;
-    opacity: 0.9;
-  }
-  
-  .blog-content {
-    padding: 40px 0;
-  }
-  
-  .blog-card {
-    transition: transform 0.2s ease;
-    border: none;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  }
-  
-  .blog-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  }
-  
-  .blog-image-wrapper {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .blog-image {
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-  }
-  
-  .blog-card:hover .blog-image {
-    transform: scale(1.05);
-  }
-  
-  .blog-category {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background-color: #fff;
-    padding: 5px 15px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: #333;
-  }
-  
-  .blog-meta {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-size: 0.85rem;
-    color: #666;
-  }
-  
-  .blog-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 10px;
-    color: #333;
-  }
-  
-  .blog-excerpt {
-    color: #666;
-    font-size: 0.9rem;
-    margin-bottom: 15px;
-    line-height: 1.6;
-  }
-  
-  .blog-author {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .author-avatar {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-  }
-  
-  .author-name {
-    font-size: 0.9rem;
-    color: #333;
-    font-weight: 500;
-  }
-  
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .blog-hero {
-      padding: 60px 0;
-    }
-  
-    .blog-hero h1 {
-      font-size: 2.5rem;
-    }
-  
-    .blog-hero p {
-      font-size: 1rem;
-    }
-  
-    .blog-content {
-      padding: 20px 0;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .blog-hero h1 {
-      font-size: 2rem;
-    }
-  
-    .blog-card {
-      margin-bottom: 20px;
-    }
-  }
-  
-  /* Detail View Styles */
-  .blog-detail-section {
-    padding: 2rem 0;
-  }
-  
-  .back-button {
-    background: none;
-    border: none;
-    color: #666;
-    font-size: 1.1rem;
-    padding: 0.5rem 0;
-    margin-bottom: 1rem;
-    cursor: pointer;
-  }
-  
-  .back-button:hover {
-    color: #333;
-  }
-  
-  .blog-detail {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .detail-image {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-  }
-  
-  .detail-meta {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 1rem;
-    color: #666;
-  }
-  
-  .detail-category {
-    background: #f0f0f0;
-    padding: 0.3rem 0.8rem;
-    border-radius: 20px;
-    font-size: 0.9rem;
-  }
-  
-  .detail-title {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .detail-content {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #333;
-    margin: 2rem 0;
-  }
-  
-  .detail-tags {
-    display: flex;
-    gap: 0.8rem;
-    margin-top: 2rem;
-  }
-  
-  .tag {
-    color: #666;
-    font-size: 0.9rem;
-    cursor: pointer;
-  }
-  
-  .tag:hover {
-    color: #333;
-  }
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff;
+  color: #333;
+  padding-bottom: 50px;
+}
+
+.blog-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://source.unsplash.com/1600x900/?jewelry');
+  background-size: cover;
+  background-position: center;
+  text-align: center;
+  padding: 80px 20px;
+  color: white;
+}
+
+.blog-hero h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.blog-hero p {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+/* Blog Cards */
+.blog-card {
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.blog-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.blog-image-wrapper {
+  position: relative;
+}
+
+.blog-category {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  background-color: #c19a5b;
+  color: white;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+}
+
+.blog-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.blog-meta {
+  font-size: 0.9rem;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.blog-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.blog-excerpt {
+  font-size: 1rem;
+  color: #666;
+}
+
+.blog-author {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.author-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.author-name {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #c19a5b;
+}
+
+/* Blog Detail Page */
+.blog-detail-section {
+  padding: 50px 20px;
+}
+
+.blog-detail {
+  max-width: 800px;
+  margin: auto;
+}
+
+.detail-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.detail-meta {
+  font-size: 0.9rem;
+  color: #666;
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.detail-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.detail-author {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.detail-content {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #444;
+}
+
+.detail-tags {
+  margin-top: 20px;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #c19a5b;
+  color: white;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+/* Back Button */
+.back-button {
+  background-color: #c19a5b;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.back-button:hover {
+  background-color: #b3864d;
+}

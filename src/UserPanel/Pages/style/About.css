@@ -12,7 +12,7 @@
 .header-underline {
   width: 60px;
   height: 4px;
-  background-color: #007bff;
+  background-color: #c19a5b;
   margin: 1rem auto;
   border-radius: 2px;
 }
@@ -27,6 +27,9 @@
 .about-image {
   flex: 1;
   min-width: 300px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .about-image img {
@@ -34,6 +37,45 @@
   height: auto;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hover-zoom img {
+  transition: transform 0.5s ease;
+}
+
+.hover-zoom:hover img {
+  transform: scale(1.05);
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: -50px;
+  left: 0;
+  right: 0;
+  background: rgba(193, 154, 91, 0.9);
+  color: white;
+  padding: 15px;
+  text-align: center;
+  transition: bottom 0.3s ease;
+  opacity: 0;
+}
+
+.about-image:hover .image-overlay {
+  bottom: 0;
+  opacity: 1;
+}
+
+.reveal-text {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: revealText 0.8s ease forwards;
+}
+
+@keyframes revealText {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .about-text {
@@ -58,21 +100,175 @@
   background-color: #f8f9fa;
   border-radius: 10px;
   transition: transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
 }
 
 .feature-card:hover {
   transform: translateY(-5px);
 }
 
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(193, 154, 91, 0.1),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.feature-card:hover::before {
+  left: 100%;
+}
+
 .feature-card i {
   font-size: 2.5rem;
-  color: #007bff;
+  color: #c19a5b;
   margin-bottom: 1rem;
 }
 
 .feature-card h3 {
   margin-bottom: 1rem;
   color: #333;
+}
+
+.expertise-section {
+  margin: 4rem 0;
+}
+
+.expertise-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.expertise-card {
+  padding: 2rem;
+  text-align: center;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.expertise-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(193, 154, 91, 0.2);
+}
+
+.expertise-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: #c19a5b;
+  transition: width 0.3s ease;
+}
+
+.expertise-card:hover::after {
+  width: 100%;
+}
+
+.expertise-card i {
+  font-size: 2.5rem;
+  color: #c19a5b;
+  margin-bottom: 1rem;
+}
+
+.testimonial-section {
+  margin: 4rem 0;
+}
+
+.testimonial-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.testimonial-card {
+  padding: 2rem;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  position: relative;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.testimonial-card:hover {
+  transform: rotateX(5deg) rotateY(5deg);
+  transition: transform 0.3s ease;
+}
+
+.testimonial-card i {
+  color: #c19a5b;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.client-name {
+  display: block;
+  margin-top: 1rem;
+  color: #c19a5b;
+  font-weight: 600;
+}
+
+.stats-section {
+  display: flex;
+  justify-content: space-around;
+  margin: 4rem 0;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(193, 154, 91, 0.1);
+  transition: transform 0.3s ease;
+  min-width: 200px;
+}
+
+.stat-item:hover {
+  transform: translateY(-10px);
+}
+
+.stat-number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #c19a5b;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  color: #333;
+  font-size: 1.1rem;
 }
 
 /* Responsive Design */
@@ -88,6 +284,21 @@
 
   .features-grid {
     grid-template-columns: 1fr;
+  }
+
+  .expertise-grid,
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-section {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stat-item {
+    width: 100%;
+    max-width: 300px;
   }
 }
 

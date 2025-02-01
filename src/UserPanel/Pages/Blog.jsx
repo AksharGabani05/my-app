@@ -7,7 +7,6 @@ const Blog = () => {
   const [loading, setLoading] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
 
-  // Enhanced blog posts data
   const blogPosts = [
     {
       id: 1,
@@ -16,7 +15,7 @@ const Blog = () => {
       date: "March 15, 2024",
       image: "https://miro.medium.com/v2/resize:fit:828/format:webp/1*yBt65HhmARbqZDDJ1McFDg.png",
       excerpt: "Discover the hottest jewelry trends that are making waves this season...",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
       author: "Sarah Johnson",
       readTime: "5 min read",
       tags: ["Trends", "Fashion", "Jewelry"]
@@ -28,12 +27,11 @@ const Blog = () => {
       date: "March 12, 2024",
       image: "https://reputationtoday.in/wp-content/uploads/2020/04/bigstock-Blog-Blogging-Homepage-Social-134171063-777x437.jpg",
       excerpt: "Essential tips and tricks to keep your precious jewelry sparkling...",
-      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+      content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
       author: "Michael Smith",
       readTime: "7 min read",
       tags: ["Care", "Maintenance", "Tips"]
-    },
-    // Add more blog posts as needed
+    }
   ];
 
   const handlePostClick = (post) => {
@@ -51,7 +49,6 @@ const Blog = () => {
         <Loader />
       ) : (
         <div className="blog-page">
-          {/* Hero Section */}
           <div className="blog-hero">
             <Container>
               <h1>Our Blog</h1>
@@ -59,8 +56,7 @@ const Blog = () => {
             </Container>
           </div>
 
-          {/* Blog Detail View */}
-          {selectedPost && (
+          {selectedPost ? (
             <Container className="blog-detail-section">
               <button className="back-button" onClick={handleCloseDetail}>
                 ← Back to Articles
@@ -70,9 +66,7 @@ const Blog = () => {
                   src={selectedPost.image} 
                   alt={selectedPost.title}
                   className="detail-image"
-                  onError={(e) => {
-                    e.target.src = '/fallback-image.jpg';
-                  }}
+                  onError={(e) => { e.target.src = '/fallback-image.jpg'; }}
                 />
                 <div className="detail-meta">
                   <span className="detail-category">{selectedPost.category}</span>
@@ -98,10 +92,7 @@ const Blog = () => {
                 </div>
               </div>
             </Container>
-          )}
-
-          {/* Blog Posts Grid Section */}
-          {!selectedPost && (
+          ) : (
             <Container className="blog-content">
               <Row className="g-4">
                 {blogPosts.map((post) => (
@@ -116,9 +107,7 @@ const Blog = () => {
                           variant="top" 
                           src={post.image} 
                           className="blog-image"
-                          onError={(e) => {
-                            e.target.src = '/fallback-image.jpg';
-                          }}
+                          onError={(e) => { e.target.src = '/fallback-image.jpg'; }}
                         />
                         <span className="blog-category">{post.category}</span>
                       </div>

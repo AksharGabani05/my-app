@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import axios from 'axios';
 import Cookies from 'js-cookie';
 import './style/Login.css';
 
@@ -22,37 +23,30 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("form",formData);
-    
-    try {
-      const response = await fetch('https://jwellary-ecommerce.onrender.com/api/users/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include',
-        body: JSON.stringify(formData),
-      });
+    console.log("Form Data:", formData);
 
-      const data = await response.json();
-      console.log("Login response:", data);
-      
-      if (response.ok && data.token) {
-        const token = data.token;
+    try {
+      const response = await axios.post(
+        'https://jwellary-ecommerce.onrender.com/api/users/login',
+        formData,
+        { withCredentials: true }
+      );
+
+      console.log("Login Response:", response.data);
+
+      if (response.status === 200 && response.data.token) {
+        const token = response.data.token;
         Cookies.set('token', token);
         console.log("Token stored:", token);
-        
+
         toast.success('Login successful!');
         setTimeout(() => {
           navigate('/');
         }, 1000);
-      } else {
-        toast.error(data.message || 'Login failed');
       }
     } catch (error) {
-      
-      console.error('Login error:', error);
-      toast.error('An error occurred. Please try again.');
+      console.error('Login Error:', error);
+      toast.error(error.response?.data?.message || 'Login failed. Please try again.');
     }
   };
 

@@ -18,6 +18,10 @@ import ResetPassword from './components/resetpassword/ResetPassword';
 import UpdateProfile from './components/updateprofile/UpdateProfile';
 import Cart from './Pages/Cart';
 import Orders from './Pages/Orders';
+import BronzeProducts from './Pages/BronzeProducts';
+import DiamondProducts from './Pages/DiamondProducts';
+import SilverProducts from './Pages/SilverProducts';
+import Home from './Pages/Home';
 
 const UserRoutes = () => {
   return (
@@ -28,11 +32,16 @@ const UserRoutes = () => {
         
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/refund-policy" element={<RefundPolicy />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/book-appointment" element={<AppointmentBooking />} />
         <Route path="/faq" element={<Faq />} />
-        <Route path="/blog" element={<Blog />} />
+        {/* <Route path="/blog" element={<Blog />} /> */}
         <Route path="/shop/gold" element={<Gold />} />
+        <Route path="/shop/silver" element={<SilverProducts />} />
+        <Route path="/shop/bronze" element={<BronzeProducts />} />
+        <Route path="/shop/diamond" element={<DiamondProducts />} />
         <Route path="/about" element={<About />} />
         <Route path="/shop/product/:id" element={<SingleProduct />} />
         <Route

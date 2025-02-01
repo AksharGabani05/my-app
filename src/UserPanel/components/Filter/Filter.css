@@ -1,59 +1,85 @@
+/* Sidebar Container */
 .filter-sidebar {
-  background: white;
+  width: 260px;
   padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
 }
 
-.filter-section {
-  margin-bottom: 25px;
-}
-
-.filter-section h4 {
+/* Section Title */
+.filter-sidebar h4 {
   font-size: 18px;
-  margin-bottom: 15px;
+  font-weight: bold;
+  margin-bottom: 12px;
   color: #333;
-  font-weight: 600;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 5px;
 }
 
-.filter-section .form-check {
+/* Checkbox & Radio Styling */
+.filter-checkbox,
+.filter-radio {
+  display: flex;
+  align-items: center;
   margin-bottom: 10px;
 }
 
-.filter-section .form-check-label {
-  color: #666;
-  font-size: 14px;
+.filter-checkbox .form-check-input,
+.filter-radio .form-check-input {
+  margin-right: 12px;
+  transform: scale(1.2);
 }
 
-.price-labels {
+.filter-checkbox label,
+.filter-radio label {
+  font-size: 15px;
+  color: #333;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Price Range */
+.filter-sidebar .form-range {
+  margin: 10px 0;
+}
+
+.filter-sidebar .price-labels {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
-  color: #666;
+  align-items: center;
   font-size: 14px;
+  color: #777;
+  margin-top: 5px;
 }
 
-.form-range {
-  accent-color: goldenrod;
+.filter-sidebar .selected-price {
+  font-weight: bold;
+  color: #007bff;
 }
 
-.form-select {
-  border-color: #ddd;
+/* Sort Dropdown */
+.filter-sidebar .form-select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
   font-size: 14px;
+  cursor: pointer;
 }
 
-.form-select:focus {
-  border-color: goldenrod;
-  box-shadow: 0 0 0 0.2rem rgba(218, 165, 32, 0.25);
+/* Hover Effects */
+.filter-checkbox .form-check-input:checked + label,
+.filter-radio .form-check-input:checked + label {
+  color: #007bff;
+  font-weight: bold;
 }
 
-.form-check-input:checked {
-  background-color: goldenrod;
-  border-color: goldenrod;
-}
-
+/* Responsive Design */
 @media (max-width: 768px) {
   .filter-sidebar {
-    margin-bottom: 20px;
+    width: 100%;
+    padding: 15px;
   }
 }

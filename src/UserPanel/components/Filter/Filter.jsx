@@ -1,74 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import './Filter.css';
 
 const Filter = ({ onFilterChange }) => {
+  const [price, setPrice] = useState(50000); // Default price range
+
+  const handlePriceChange = (e) => {
+    const newPrice = e.target.value;
+    setPrice(newPrice);
+    onFilterChange('price', newPrice);
+  };
+
   return (
     <div className="filter-sidebar">
+      {/* Category Filter */}
+      <div className="filter-section">
+        <h4>Category</h4>
+        {['Necklaces', 'Rings', 'Earrings', 'Bracelets'].map((category) => (
+          <div key={category} className="filter-checkbox">
+            <Form.Check
+              type="checkbox"
+              id={`category-${category.toLowerCase()}`}
+              label={category}
+              onChange={(e) => onFilterChange('category', category.toLowerCase(), e.target.checked)}
+            />
+          </div>
+        ))}
+      </div>
+
+      {/* Price Range Filter */}
       <div className="filter-section">
         <h4>Price Range</h4>
-        <Form.Range 
-          min={0} 
-          max={100000} 
-          step={1000}
-          onChange={(e) => onFilterChange('price', e.target.value)}
-        />
+        <Form.Range min={0} max={200000} step={1000} value={price} onChange={handlePriceChange} />
         <div className="price-labels">
           <span>₹0</span>
-          <span>₹100,000</span>
+          <span className="selected-price">₹{price}</span>
+          <span>₹200,000</span>
         </div>
       </div>
 
+      {/* Customer Rating Filter */}
       <div className="filter-section">
-        <h4>Categories</h4>
-        <Form.Check 
-          type="checkbox"
-          label="Necklaces"
-          onChange={(e) => onFilterChange('category', 'necklaces', e.target.checked)}
-        />
-        <Form.Check 
-          type="checkbox"
-          label="Rings"
-          onChange={(e) => onFilterChange('category', 'rings', e.target.checked)}
-        />
-        <Form.Check 
-          type="checkbox"
-          label="Earrings"
-          onChange={(e) => onFilterChange('category', 'earrings', e.target.checked)}
-        />
-        <Form.Check 
-          type="checkbox"
-          label="Bracelets"
-          onChange={(e) => onFilterChange('category', 'bracelets', e.target.checked)}
-        />
+        <h4>Customer Rating</h4>
+        {[5, 4, 3, 2, 1].map((rating) => (
+          <div key={rating} className="filter-radio">
+            <Form.Check
+              type="radio"
+              id={`rating-${rating}`}
+              name="rating"
+              label={`${rating} Stars & Up`}
+              onChange={() => onFilterChange('rating', rating)}
+            />
+          </div>
+        ))}
       </div>
 
-      <div className="filter-section">
-        <h4>Karat</h4>
-        <Form.Check 
-          type="checkbox"
-          label="24K"
-          onChange={(e) => onFilterChange('karat', '24k', e.target.checked)}
-        />
-        <Form.Check 
-          type="checkbox"
-          label="22K"
-          onChange={(e) => onFilterChange('karat', '22k', e.target.checked)}
-        />
-        <Form.Check 
-          type="checkbox"
-          label="18K"
-          onChange={(e) => onFilterChange('karat', '18k', e.target.checked)}
-        />
-      </div>
-
+      {/* Sorting Options */}
       <div className="filter-section">
         <h4>Sort By</h4>
         <Form.Select onChange={(e) => onFilterChange('sort', e.target.value)}>
-          <option value="newest">Newest</option>
+          <option value="a-to-z">A to Z</option>
+          <option value="z-to-a">Z to A</option>
           <option value="price-low-high">Price: Low to High</option>
           <option value="price-high-low">Price: High to Low</option>
-          <option value="popularity">Popularity</option>
         </Form.Select>
       </div>
     </div>

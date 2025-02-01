@@ -86,7 +86,7 @@ const Header = () => {
           </Offcanvas.Header>
           <Offcanvas.Body>
             <Nav className="flex-column mobile-nav">
-              <Nav.Link href="/home" className="nav-link-custom">
+              <Nav.Link href="/" className="nav-link-custom">
                 Home
               </Nav.Link>
               <div className="mobile-dropdown">
